@@ -63,6 +63,24 @@ CREATE TABLE task_dependencies (
 	FOREIGN KEY(post_task_id) REFERENCES tasks(id)	
 ) ENGINE=InnoDB;
 
+CREATE TABLE assignees (
+    id      				BIGINT NOT NULL AUTO_INCREMENT,
+    task_id				BIGINT NOT NULL,
+	user_id				BIGINT NOT NULL,	
+	role_id				BIGINT,			
+    PRIMARY KEY(id)	,
+	FOREIGN KEY(task_id) REFERENCES tasks(id),
+	FOREIGN KEY(user_id) REFERENCES users(id),
+	FOREIGN KEY(role_id) REFERENCES roles(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE roles (
+    id      				BIGINT NOT NULL AUTO_INCREMENT,
+	title					VARCHAR(255),
+	description		TEXT,	
+    PRIMARY KEY(id)	
+) ENGINE=InnoDB;
+
 -- TODO
 -- - task/project rendezés túl sok beállítást követel a usertől, lehet nem kéne túlbonyolítani
 -- - is_archive: 
